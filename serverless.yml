@@ -1,0 +1,22 @@
+service: vimondEngineeringAssignment
+frameworkVersion: "3"
+
+plugins:
+  - serverless-offline
+
+custom:
+  STAGE: ${opt:stage, 'dev'}
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+
+functions:
+  intervalProblem:
+    handler: src/intervalProblem.handler
+    events:
+      - http:
+          path: /v1/intervalProblem
+          method: POST
+          cors: true

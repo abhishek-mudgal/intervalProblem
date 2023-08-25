@@ -1,0 +1,21 @@
+{
+  "name": "vimondengineeringassignment",
+  "version": "1.0.0",
+  "description": "Vimonds Engineering Assignment for Abhishek",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "offline": "sls offline start --lambdaPort 3008 --reloadHandler",
+    "deploy:dev": "sls deploy --stage dev",
+    "deploy:staging": "sls deploy --stage staging",
+    "deploy:prod": "sls deploy --stage prod"
+  },
+  "author": "Abhishek Mudgal",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-offline": "^12.0.4"
+  }
+}
