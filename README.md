@@ -63,7 +63,6 @@ Installing the dependencies and launching the server locally:
 
 <img width="1144" alt="Screenshot 2023-08-25 at 7 11 42 AM" src="https://github.com/abhishek-mudgal/intervalProblem/assets/25780393/5ad01fdb-5b1d-4a57-9c6a-df6524ddb7f9">
 
-
 **Once the API serverless offline is up and running, to interact with the lambda function:**
 
 **API Request**
@@ -75,11 +74,11 @@ Installing the dependencies and launching the server locally:
         "excludes": ["410-420", "95-205", "100-150"]
     }'
 
-| Key      	| Sample Value                     	| Type  	|
-|----------	|----------------------------------	|-------	|
-| excludes 	| ["410-420", "95-205", "100-150"] 	| Array 	|
-| includes 	| ["200-300", "10-100", "400-500"] 	| Array 	|
-|          	|                                  	|       	|
+| Key      | Sample Value                     | Type  |
+| -------- | -------------------------------- | ----- |
+| excludes | ["410-420", "95-205", "100-150"] | Array |
+| includes | ["200-300", "10-100", "400-500"] | Array |
+|          |                                  |       |
 
 **Sample Response:**
 
@@ -93,3 +92,12 @@ Installing the dependencies and launching the server locally:
 Below command deploys the `Cloudformation` stack on AWS in `ap-south-1` region with the help of Serverless framework. It will also assemble all the necessary resources on the cloud such as Cloudwatch, API Gateway and etc.
 
     npm run deploy:dev
+
+## Folder Structure
+
+**./serverless.yml**
+Configuration file for serverless framework to develop lambda functions and create cloudformation stacks.
+**./src/intervalProblem.js**
+Lambda function which contains the solution to the problem. Contains the solution to the problem and related helper functions.
+**./lib/responses.js**
+Contains standard HTTP response functions for API Gateway response, functions also include headers for cors.
