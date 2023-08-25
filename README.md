@@ -95,9 +95,11 @@ Below command deploys the `Cloudformation` stack on AWS in `ap-south-1` region w
 
 ## Folder Structure
 
-**./serverless.yml**
-Configuration file for serverless framework to develop lambda functions and create cloudformation stacks.
-**./src/intervalProblem.js**
-Lambda function which contains the solution to the problem. Contains the solution to the problem and related helper functions.
-**./lib/responses.js**
-Contains standard HTTP response functions for API Gateway response, functions also include headers for cors.
+  **./serverless.yml**
+    Configuration file for serverless framework to develop lambda functions and create cloudformation stacks.
+
+  **./src/intervalProblem.js**
+    Lambda function which contains the solution to the problem. Contains the solution to the problem and related helper functions.
+
+  **./lib/responses.js**
+    Contains standard HTTP response functions for API Gateway response, functions also include headers for cors.
