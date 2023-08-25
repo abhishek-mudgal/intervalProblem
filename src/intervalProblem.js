@@ -17,36 +17,9 @@ function returnMultiDimensionArray(intervalStrings) {
     return intervals
 }
 
-function joinIntervalsArray(intervals) {
-    intervals.sort((a, b) => a[0] - b[0])
-
-    const merged = [intervals[0]]
-
-    for (let i = 1;i < intervals.length;i++) {
-        const current = intervals[i]
-        const lastMerged = merged[merged.length - 1]
-
-        if (current[0] <= lastMerged[1]) {
-            lastMerged[1] = Math.max(lastMerged[1], current[1])
-        } else {
-            merged.push(current)
-        }
-    }
-
-    // joining the overlapping array objects
-    for (let i = 0;i < merged.length - 1;i++) {
-        const current = merged[i]
-        const next = merged[i + 1]
-
-        if (current[1] >= next[0]) {
-            current[1] = Math.max(current[1], next[1])
-            merged.splice(i + 1, 1)
-            i--
-        }
-    }
-    return merged
+function sortArray(intervals) {
+    return intervals.sort((a, b) => a[0] - b[0])
 }
-
 
 function createIntervalArray(includes, excludes) {
     const intervals = includes.slice()
@@ -71,7 +44,7 @@ function createIntervalArray(includes, excludes) {
     }
 
     console.log(intervals)
-    return joinIntervalsArray(intervals)
+    return sortArray(intervals)
 }
 
 
@@ -88,8 +61,7 @@ export const handler = async (event) => {
         let excludeRanges = returnMultiDimensionArray(excludes)
         console.log(includeRanges, excludeRanges)
 
-        let finalRange = []
-        finalRange = createIntervalArray(includeRanges, excludeRanges)
+        let finalRange = createIntervalArray(includeRanges, excludeRanges)
 
         // converting multidimension array to flat array for desired output as a string
         let desiredOutput = finalRange.map(interval => `${interval[0]}-${interval[1]}`)
