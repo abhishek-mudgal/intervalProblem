@@ -61,6 +61,9 @@ Installing the dependencies and launching the server locally:
     npm i
     npm run offline
 
+<img width="1144" alt="Screenshot 2023-08-25 at 7 11 42 AM" src="https://github.com/abhishek-mudgal/intervalProblem/assets/25780393/5ad01fdb-5b1d-4a57-9c6a-df6524ddb7f9">
+
+
 **Once the API serverless offline is up and running, to interact with the lambda function:**
 
 **API Request**
