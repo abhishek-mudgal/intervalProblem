@@ -1,72 +1,82 @@
-<!--
-title: 'AWS NodeJS Example'
-description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-priority: 1
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+    
+# Engineering Assignment: Java, Node, Go
+
+This repo contains solution for the problem provided **** and ***** to be completed by *******.
+
+## Problem Statement
+Write a program that takes two inputs from the command line or a web-service that offers an endpoint taking the following input:
+
+ -  a set of include intervals 
+ -  a set of exclude intervals
+
+The sets of intervals can be given in any order, and they may be empty or overlapping. The program
+should output the result of taking all the includes and “remove” the excludes. The output should be given
+as non overlapping intervals in a sorted order. The intervals will contain integers only.
+
+#### Example 1:
+    Includes: 10-100
+    Excludes: 20-30
+    Output should be: 10-19, 31-100
+
+#### Example 2:
+    Includes: 10-100
+    Excludes: 20-30
+    Output should be: 10-19, 31-100
+
+#### Example 3:
+    Includes: 50-5000, 10-100
+    Excludes: (none)
+    Output: 10-5000
+
+#### Example 4:
+    Includes: 200-300, 50-150
+    Excludes: 95-205
+    Output: 50-94, 206-300
+
+#### Example 5:
+
+    Includes: 200-300, 10-100, 400-500
+    Excludes: 410-420, 95-205, 100-150
+    Output: 10-94, 206-300, 400-409, 421-500
 
 
-# Serverless Framework AWS NodeJS Example
+<br>
 
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
+## Solution
+Approached the problem by creating a Web Server written in `NodeJS` as a `Lambda` function with the help of `Serverless Framework` which can be deployed on AWS with a single command.
 
-## Usage
+How to start the server locally:
 
-### Deployment
+**Downloading the repo**
 
-In order to deploy the example, you need to run the following command:
+    git clone
+Installing the dependencies and launching the server locally:
 
-```
-$ serverless deploy
-```
+    npm i -g serverless
+    npm i
+    npm run offline
 
-After running deploy, you should see output similar to:
+**Once the API serverless offline is up and running, to interact with the lambda function:** 
 
-```bash
-Deploying aws-node-project to stage dev (us-east-1)
+**API Request**
 
-✔ Service deployed to stack aws-node-project-dev (112s)
+    curl --location 'http://localhost:3000/dev/v1/intervalProblem' \
+    --header 'Content-Type: application/json' \
+    --data  '{
+        "includes": ["200-300", "10-100", "400-500"],
+        "excludes": ["410-420", "95-205", "100-150"]
+    }'
 
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
-```
+**Sample Response:** 
 
-### Invocation
+    { 
+    "message": "Result Fetched Successfully",
+    "data": ["10-94","206-300","400-409","421-500"],
+    "status": 200
+    }
 
-After successful deployment, you can invoke the deployed function by using the following command:
+**Deploying it on the cloud:**
+    Below command deploys the `Cloudformation` stack on AWS in `ap-south-1` region with the help of Serverless framework. It will also assemble all the necessary resources for on the cloud such as Cloudwatch, API Gateway and etc.
 
-```bash
-serverless invoke --function hello
-```
+    npm run deploy:dev
 
-Which should result in response similar to the following:
-
-```json
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
-}
-```
-
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
