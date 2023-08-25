@@ -53,7 +53,7 @@ function createIntervalArray(includes, excludes) {
 
     let intervalArray = []
     for (const exclude of excludes) {
-        intervals.forEach((interval, index) => {
+        intervals.forEach((interval) => {
             if (interval[1] <= exclude[0] || interval[0] >= exclude[1]) {
                 intervalArray.push(interval)
             } else if (interval[0] < exclude[0] && interval[1] > exclude[1]) {
@@ -77,23 +77,19 @@ function createIntervalArray(includes, excludes) {
 
 export const handler = async (event) => {
     try {
-
         let { includes, excludes } = JSON.parse(event.body)
 
-        if (!includes instanceof Array && !excludes instanceof Array) {
+        if (typeof (includes) !== "object" || typeof (excludes) !== 'object') {
             return badRequest({ message: "Body Invalid" })
         }
 
         //Making making single dimensional array into multi dimensional array
         let includeRanges = returnMultiDimensionArray(includes)
         let excludeRanges = returnMultiDimensionArray(excludes)
-
         console.log(includeRanges, excludeRanges)
-
 
         let finalRange = []
         finalRange = createIntervalArray(includeRanges, excludeRanges)
-
 
         // converting multidimension array to flat array for desired output as a string
         let desiredOutput = finalRange.map(interval => `${interval[0]}-${interval[1]}`)
