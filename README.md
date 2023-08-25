@@ -72,11 +72,11 @@ Installing the dependencies and launching the server locally:
         "excludes": ["410-420", "95-205", "100-150"]
     }'
 
-    |Key| Value |
-
-|--|--|
-| includes | type: array |
-|excludes|type: array|
+| Key      	| Sample Value                     	| Type  	|
+|----------	|----------------------------------	|-------	|
+| excludes 	| ["410-420", "95-205", "100-150"] 	| Array 	|
+| includes 	| ["200-300", "10-100", "400-500"] 	| Array 	|
+|          	|                                  	|       	|
 
 **Sample Response:**
 
