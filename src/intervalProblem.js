@@ -17,10 +17,12 @@ function returnMultiDimensionArray(intervalStrings) {
     return intervals
 }
 
+//Sorting the firnal array using 0th elem of final array
 function sortArray(intervals) {
     return intervals.sort((a, b) => a[0] - b[0])
 }
 
+// Create an array with intervals and taking the exclude chunks out
 function createIntervalArray(includes, excludes) {
     const intervals = includes.slice()
 
